@@ -9,6 +9,13 @@ class ListdataitemController extends Controller
 {
     //
     public function getAll() {
+    
+        $items = Item::with('pajaks')->paginate(15);
+        return response()->json([
+            $items
+       ], 200);
+
+        /*
         $items = Item::get()->toArray();
         $pajak = Pajak::select(\DB::raw("id,nama,concat(ifnull(format(rate, 0, 'en_US'), 0), '%') AS rate"))->get();
         $new_array=array();
@@ -24,5 +31,7 @@ class ListdataitemController extends Controller
         return response()->json([
              'data:' =>$new_array
         ], 200);
+        */
     }
+    
 }

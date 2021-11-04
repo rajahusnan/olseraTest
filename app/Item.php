@@ -11,4 +11,9 @@ class Item extends Model
 
     protected $fillable = ['nama'];
 
+    public function pajaks()
+    {
+        return $this->belongsToMany(Pajak::class,'transacs','item_id','pajak_id');
+    }
+
 }

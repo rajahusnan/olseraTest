@@ -14,6 +14,7 @@ class PajakController extends Controller
       }
 
     public function createPajaks(Request $request) {
+      if (!empty($request->nama && $request->rate)){
         $pajak = new Pajak;
         $pajak->nama = $request->nama;
         $pajak->rate = $request->rate;
@@ -21,6 +22,11 @@ class PajakController extends Controller
         return response()->json([
             "message" => "pajak record created"
         ], 201);
+      }else{
+        return response()->json([
+          "message" => "nama & rate cant be empty!"
+      ], 401);
+      }
     }  
 
     public function updatePajaks(Request $request, $id) {
